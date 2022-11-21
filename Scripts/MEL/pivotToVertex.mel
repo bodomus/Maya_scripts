@@ -1,0 +1,24 @@
+
+
+1. CHange the pivot coordinates of selected object to the boundingbox coordinate
+
+float $bb[];
+float $pivots[];
+
+// center pivot on object
+xform -ws -a -cp;
+// store bounding box info into float array
+$bb = `xform -q -ws -a -bb`;
+//store centered pivots into pivot float array
+$pivots = `xform -q -ws -a -piv`;
+// set new pivots, X, Z from centered pivot, Y from lower bounding box
+xform -ws -a -piv $bb[0] $bb[1] $bb[2];
+
+
+2. 
+//move vertex to selected point
+$vert = `ls -sl`;
+$obj = `listRelatives -p (ls("-o", "-sl"))`;
+$xyz = `pointPosition $vert[0]`;
+move $xyz[0] $xyz[1] $xyz[2] ($obj[0] + ".scalePivot") ($obj[0] + ".rotatePivot");
+select $obj;
