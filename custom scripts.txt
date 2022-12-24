@@ -1,0 +1,2 @@
+if(`grid -q -d` - 5 > 0) grid -d (`grid -q -d` -5);
+grid -d (`grid -q -d` +5);
